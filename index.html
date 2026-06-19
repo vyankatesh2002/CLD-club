@@ -45,8 +45,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-
-    <link rel="stylesheet" href="css/index.css">
+    
+    <!-- Mermaid.js for Flowcharts -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 
     <style>
         :root {
@@ -114,20 +115,18 @@
             min-height: 100vh;
         }
 
-        /* Selection */
         ::selection {
             background-color: rgba(26, 111, 196, 0.2);
             color: var(--blue-dark);
         }
 
-        /* Focus styles */
         :focus-visible {
             outline: 3px solid var(--blue);
             outline-offset: 3px;
             border-radius: 6px;
         }
 
-        /* ==================== NAVBAR - Glassmorphism ==================== */
+        /* ==================== NAVBAR ==================== */
         .navbar {
             position: fixed;
             top: 0;
@@ -453,12 +452,10 @@
         }
 
         @keyframes pulse-dot {
-
             0%,
             100% {
                 box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
             }
-
             50% {
                 box-shadow: 0 0 0 12px rgba(34, 197, 94, 0);
             }
@@ -603,12 +600,10 @@
         }
 
         @keyframes float-card {
-
             0%,
             100% {
                 transform: translateY(0);
             }
-
             50% {
                 transform: translateY(-18px);
             }
@@ -868,6 +863,245 @@
         .portfolio-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-xl);
+        }
+
+        /* ==================== MENTORS SECTION ==================== */
+        .mentors {
+            background: var(--off-white);
+        }
+
+        .mentors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .mentor-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 32px 24px 28px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+            border: 1px solid var(--gray-100);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .mentor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--orange));
+            transform: scaleX(0);
+            transition: transform var(--transition-slow);
+        }
+
+        .mentor-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .mentor-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--gray-200);
+        }
+
+        .mentor-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 14px;
+            display: block;
+            background: var(--blue-light);
+            transition: transform var(--transition);
+        }
+
+        .mentor-card:hover img {
+            transform: scale(1.05) rotate(-3deg);
+        }
+
+        .mentor-card .click-hint {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            margin-top: 8px;
+            display: block;
+            font-weight: 500;
+            opacity: 0.7;
+            transition: opacity var(--transition);
+        }
+        
+        .mentor-card:hover .click-hint {
+            opacity: 1;
+        }
+
+        .mentor-name {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--gray-900);
+        }
+
+        .mentor-role {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .mentor-role.blue-text { color: var(--blue); }
+        .mentor-role.pink-text { color: #db2777; }
+        .mentor-role.choc-text { color: #b45309; }
+
+        .mentor-contact {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .mentor-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-mentor {
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-poppins);
+        }
+
+        .btn-mentor-call {
+            background: var(--gray-100);
+            color: var(--gray-800);
+        }
+
+        .btn-mentor-call:hover {
+            background: var(--gray-200);
+            transform: translateY(-2px);
+        }
+
+        .btn-mentor-wa {
+            background: #25d366;
+            color: white;
+        }
+
+        .btn-mentor-wa:hover {
+            background: #20b859;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+        }
+
+        .mentors-cta-container {
+            text-align: center;
+            margin-top: 44px;
+        }
+
+        /* ==================== MENTOR MODAL ==================== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-box {
+            background: var(--white);
+            max-width: 750px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: var(--radius-2xl);
+            padding: 40px 32px;
+            position: relative;
+            box-shadow: var(--shadow-xl);
+            border-top: 4px solid var(--blue);
+            transition: border-color var(--transition);
+        }
+
+        .modal-box.orange-border {
+            border-top-color: var(--orange);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--gray-500);
+            transition: all var(--transition);
+            font-family: var(--font-poppins);
+            line-height: 1;
+            padding: 0 4px;
+        }
+
+        .modal-close:hover {
+            color: var(--gray-900);
+            transform: rotate(90deg);
+        }
+
+        .modal-box h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .modal-box .modal-quote {
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-200);
+            text-align: center;
+        }
+
+        /* Mermaid Flowchart Styling override */
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 480px) {
+            .modal-box {
+                padding: 28px 16px;
+            }
         }
 
         /* ==================== PROGRAMS ==================== */
@@ -1452,25 +1686,62 @@
             font-size: 2rem;
         }
 
-        .map-placeholder {
+        /* Map Section */
+        .map-wrapper {
             margin-top: 40px;
+            position: relative;
             border-radius: var(--radius-xl);
             overflow: hidden;
-            background: linear-gradient(135deg, #e8f2fb, #dce8f5);
-            height: 280px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gray-500);
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: 2px dashed var(--gray-300);
-            letter-spacing: 0.02em;
-            gap: 8px;
+            box-shadow: var(--shadow-lg);
+            height: 350px;
         }
 
-        .map-placeholder .mp-icon {
-            font-size: 2.5rem;
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .map-wrapper .map-overlay-link {
+            position: absolute;
+            inset: 0;
+            display: block;
+            z-index: 10;
+            cursor: pointer;
+            background: transparent;
+            transition: background 0.2s;
+        }
+
+        .map-wrapper .map-overlay-link:hover {
+            background: rgba(26, 111, 196, 0.04);
+        }
+
+        .map-wrapper .map-open-btn {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            z-index: 15;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all var(--transition);
+            pointer-events: auto;
+        }
+
+        .map-wrapper .map-open-btn:hover {
+            background: var(--blue-light);
+            color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
         }
 
         /* ==================== FOOTER ==================== */
@@ -1539,12 +1810,10 @@
         }
 
         @keyframes whatsapp-pulse {
-
             0%,
             100% {
                 box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
             }
-
             50% {
                 box-shadow: 0 8px 44px rgba(37, 211, 102, 0.7), 0 0 0 18px rgba(37, 211, 102, 0.08);
             }
@@ -1720,6 +1989,10 @@
                 flex-direction: column;
                 text-align: center;
             }
+            
+            .map-wrapper {
+                height: 280px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1787,6 +2060,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#hero" class="active">Home</a></li>
                 <li><a href="#about-system">About</a></li>
+                <li><a href="#mentors">Mentors</a></li>
                 <li><a href="#programs">Programs</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#parent-zone">Parents</a></li>
@@ -1805,6 +2079,7 @@
         <a href="#about-system">About System</a>
         <a href="#what-we-develop">What We Develop</a>
         <a href="#about-us">Trainer</a>
+        <a href="#mentors">Mentors</a>
         <a href="#programs">Programs</a>
         <a href="#activities">Activities</a>
         <a href="#weekend-special">Weekend Special</a>
@@ -1997,6 +2272,58 @@
                     class="btn btn-primary" style="padding: 12px 28px;">
                     🔗 Visit Portfolio Website
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MENTORS SECTION ==================== -->
+    <section class="mentors section" id="mentors">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Our Team</span>
+                <h2 class="section-title">Meet Our Mentors</h2>
+                <p class="section-subtitle">Dedicated mentors guiding children toward confidence, leadership, communication, and personal growth.</p>
+            </div>
+            <div class="mentors-grid">
+                <!-- Mentor 1 (Vyanki) -->
+                <div class="mentor-card reveal reveal-delay-1" data-mentor="vyanki">
+                    <img src="vyanki.jpeg" alt="vyankatesh jaware img">
+                    <h4 class="mentor-name">Vyankatesh Jaware</h4>
+                    <p class="mentor-role choc-text">Mentor & Leadership Coach</p>
+                    <span class="mentor-contact">📞 +91 9960340222</span>
+                    <div class="mentor-actions">
+                        <a href="tel:+919960340222" class="btn-mentor btn-mentor-call">📞 Call</a>
+                        <a href="https://wa.me/919960340222?text=Hi%20Vyankatesh%20Sir,%20I%20want%20to%20know%20more%20about%20the%20club." target="_blank" rel="noopener noreferrer" class="btn-mentor btn-mentor-wa">💬 WhatsApp</a>
+                    </div>
+                    <span class="click-hint">👆 Click to view growth flow</span>
+                </div>
+                <!-- Mentor 2 (Vaibhav) -->
+                <div class="mentor-card reveal reveal-delay-2" data-mentor="vaibhav">
+                    <img src="patil.jpeg" alt="vaibhav patil img">
+                    <h4 class="mentor-name">Vaibhav Patil</h4>
+                    <p class="mentor-role blue-text"> Mentor & Personality Development Coach</p>
+                    <span class="mentor-contact">📞 +91 9172425362</span>
+                    <div class="mentor-actions">
+                        <a href="tel:+919172425362" class="btn-mentor btn-mentor-call">📞 Call</a>
+                        <a href="https://wa.me/919172425362?text=Hi%20Vaibhav%20Sir,%20I%20want%20to%20know%20more%20about%20the%20club." target="_blank" rel="noopener noreferrer" class="btn-mentor btn-mentor-wa">💬 WhatsApp</a>
+                    </div>
+                    <span class="click-hint">👆 Click to view growth flow</span>
+                </div>
+                <!-- Mentor 3 (Pushpa) -->
+                <div class="mentor-card reveal reveal-delay-3" data-mentor="pushpa">
+                    <img src="puspa.jpeg" alt="pushpalata pimple img">
+                    <h4 class="mentor-name">Pushpalata Pimple</h4>
+                    <p class="mentor-role pink-text">Mentor & Communication Coach</p>
+                    <span class="mentor-contact">📞 +91 919359644300</span>
+                    <div class="mentor-actions">
+                        <a href="tel:+91919359644300" class="btn-mentor btn-mentor-call">📞 Call</a>
+                        <a href="https://wa.me/91919359644300?text=Hi%20Pushpalata%20Ma'am,%20I%20want%20to%20know%20more%20about%20the%20club." target="_blank" rel="noopener noreferrer" class="btn-mentor btn-mentor-wa">💬 WhatsApp</a>
+                    </div>
+                    <span class="click-hint">👆 Click to view growth flow</span>
+                </div>
+            </div>
+            <div class="mentors-cta-container reveal">
+                <a href="#join-form" class="btn btn-primary">🚀 Connect With Our Mentors</a>
             </div>
         </div>
     </section>
@@ -2311,9 +2638,19 @@
                     <span>Trimurti Chowk<br><small style="color:var(--gray-500);">Nashik, Maharashtra</small></span>
                 </div>
             </div>
-            <div class="map-placeholder reveal reveal-delay-2">
-                <span class="mp-icon">🗺️</span>
-                <span>Google Maps — Trimurti Chowk, Nashik<br><small>Map embed coming soon</small></span>
+
+            <!-- MAP SECTION -->
+            <div class="map-wrapper reveal reveal-delay-2">
+                <iframe src="https://maps.google.com/maps?q=Trimurti+Chowk,+Nashik,+Maharashtra&output=embed" 
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <a href="https://maps.app.goo.gl/X7m35FtCyswgr2xF6" target="_blank" rel="noopener noreferrer" 
+                   class="map-overlay-link" aria-label="Open exact location on Google Maps">
+                </a>
+                <a href="https://maps.app.goo.gl/X7m35FtCyswgr2xF6" target="_blank" rel="noopener noreferrer" 
+                   class="map-open-btn">
+                    🗺️ View on Google Maps
+                </a>
             </div>
         </div>
     </section>
@@ -2337,9 +2674,32 @@
         💬
     </a>
 
+    <!-- ==================== MENTOR MODAL ==================== -->
+    <div class="modal-overlay" id="mentorModal">
+        <div class="modal-box" id="modalBox">
+            <button class="modal-close" id="closeModalBtn" aria-label="Close modal">×</button>
+            <h3 id="modalTitle">Mentor Details</h3>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
     <!-- ==================== JAVASCRIPT ==================== -->
     <script>
         (function () {
+            // Initialize Mermaid for Flowcharts
+            mermaid.initialize({ 
+                startOnLoad: false, 
+                theme: 'base',
+                themeVariables: {
+                    primaryColor: '#1a6fc4',
+                    primaryTextColor: '#fff',
+                    primaryBorderColor: '#145a9e',
+                    lineColor: '#f4811f',
+                    secondaryColor: '#f4811f',
+                    tertiaryColor: '#e8f2fb'
+                }
+            });
+
             const navbar = document.getElementById('navbar');
             const hamburger = document.getElementById('hamburger');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -2347,9 +2707,138 @@
             const trialForm = document.getElementById('trialForm');
             const currentYearSpan = document.getElementById('currentYear');
 
+            // Modal Elements
+            const modal = document.getElementById('mentorModal');
+            const modalBox = document.getElementById('modalBox');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            const closeBtn = document.getElementById('closeModalBtn');
+
             if (currentYearSpan) {
                 currentYearSpan.textContent = new Date().getFullYear();
             }
+
+            // Mentor Flowchart Data
+            const mentorData = {
+                vyanki: {
+                    name: "Vyankatesh Jaware",
+                    borderClass: "orange-border",
+                    content: `
+                        <div class="mermaid">
+                            graph TD
+                            A[Child] --> B[Vyankatesh Jaware: Leadership Coach]
+                            B --> C[Professional Posture]
+                            B --> D[Confident Gestures]
+                            B --> E[Commanding Walking Style]
+                            B --> F[Discipline & Professionalism]
+                            C --> G[Builds Unshakable Confidence]
+                            D --> G
+                            E --> G
+                            F --> G
+                            G --> H[Transforms into a Future Leader]
+                        </div>
+                        <p class="modal-quote">"Leadership is not about titles, it's about action, posture, and impact."</p>
+                    `
+                },
+                vaibhav: {
+                    name: "Vaibhav Patil",
+                    borderClass: "",
+                    content: `
+                        <div class="mermaid">
+                            graph TD
+                            A[Child] --> B[Vaibhav Patil: Strategic Mind Coach]
+                            B --> C[Strategic Thinking & Resilience]
+                            B --> D[Planning for Big Goals]
+                            B --> E[Physical Health & Mental Wealth]
+                            B --> F[Unwavering Self-Belief]
+                            C --> G[Gains a Strong Mindset]
+                            D --> G
+                            E --> G
+                            F --> G
+                            G --> H[Ready to Take on Big Challenges]
+                        </div>
+                        <p class="modal-quote">"A strong mind and a healthy body are the foundations of every great success."</p>
+                    `
+                },
+                pushpa: {
+                    name: "Pushpalata Pimple",
+                    borderClass: "",
+                    content: `
+                        <div class="mermaid">
+                            graph TD
+                            A[Child] --> B[Pushpalata Pimple: Communication Coach]
+                            B --> C[Effective Communication]
+                            B --> D[Impactful Storytelling]
+                            B --> E[Emotional Intelligence]
+                            B --> F[Positive Social Behaviors]
+                            C --> G[Builds Strong Interpersonal Skills]
+                            D --> G
+                            E --> G
+                            F --> G
+                            G --> H[Becomes an Articulate & Empathetic Person]
+                        </div>
+                        <p class="modal-quote">"Your behavior and your story are your superpowers. Let's craft them beautifully."</p>
+                    `
+                }
+            };
+
+            // Modal Functions
+            function openModal(mentorKey) {
+                const data = mentorData[mentorKey];
+                if (!data) return;
+
+                modalTitle.textContent = data.name;
+                modalContent.innerHTML = data.content;
+                
+                // Reset border class
+                modalBox.classList.remove('orange-border');
+                if(data.borderClass) {
+                    modalBox.classList.add(data.borderClass);
+                }
+
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+
+                // Render the Mermaid flowchart
+                try {
+                    // Cleanly run Mermaid on the newly added element
+                    mermaid.run({ nodes: [document.querySelector('.mermaid')] });
+                } catch (e) {
+                    console.log("Mermaid render error:", e);
+                }
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Add click listeners to mentor cards
+            document.querySelectorAll('.mentor-card[data-mentor]').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (e.target.closest('.btn-mentor') || e.target.closest('a')) return;
+                    
+                    const mentorKey = this.dataset.mentor;
+                    openModal(mentorKey);
+                });
+            });
+
+            // Close modal events
+            closeBtn.addEventListener('click', closeModal);
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // ==================== SCROLL & NAV FUNCTIONS ====================
 
             function handleScroll() {
                 if (window.scrollY > 40) {
