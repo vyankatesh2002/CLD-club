@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About CLD | Child Leadership Development Club, Nashik</title>
+    <meta name="description" content="Discover CLD's mission, vision, core values, learning method, and leadership team. A structured activity-based child development program in Nashik.">
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue-dark: #145a9e;
+            --blue-light: #e8f2fb;
+            --blue: #1a6fc4;
+            --orange: #f4811f;
+            --orange-dark: #d97014;
+            --orange-light: #fff5ed;
+            --white: #ffffff;
+            --off-white: #f9fafb;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+            --shadow-lg: 0 20px 40px -10px rgba(0,0,0,0.1), 0 8px 20px -8px rgba(0,0,0,0.06);
+            --radius-lg: 22px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.7;
+            padding-top: 80px;
+        }
+
+        /* Fixed top bar */
+        .topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            padding: 12px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+        .topbar .home-link {
+            text-decoration: none;
+            color: var(--blue);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color var(--transition);
+        }
+        .topbar .home-link:hover {
+            color: var(--orange-dark);
+        }
+        .topbar .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--gray-900);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        /* Headings */
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin: 40px 0 16px;
+            border-left: 5px solid var(--blue);
+            padding-left: 16px;
+        }
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin: 24px 0 12px;
+        }
+        p, li {
+            font-size: 1rem;
+            color: var(--gray-700);
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+            padding-left: 24px;
+            position: relative;
+        }
+        ul li::before {
+            content: "●";
+            color: var(--blue);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .value-grid, .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .value-item, .trust-item {
+            background: var(--blue-light);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-align: center;
+            color: var(--blue-dark);
+        }
+        .trust-item {
+            background: var(--orange-light);
+            color: var(--orange-dark);
+        }
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .step {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 30px;
+            padding: 12px 24px;
+            font-weight: 700;
+            color: var(--gray-800);
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+        }
+        .step:hover {
+            background: var(--blue-light);
+            color: var(--blue);
+            transform: translateY(-2px);
+        }
+        .arrow {
+            font-size: 1.4rem;
+            color: var(--orange);
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            .steps { flex-direction: column; }
+            .arrow { display: none; }
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            margin: 20px 0;
+            border: 1px solid var(--gray-100);
+            transition: all var(--transition);
+        }
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .team-card h3 {
+            margin-top: 0;
+            color: var(--blue-dark);
+        }
+        .team-card .role {
+            font-weight: 600;
+            color: var(--orange);
+            margin-bottom: 8px;
+        }
+        .promise {
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        .motto {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--blue), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--gray-200);
+            color: var(--gray-500);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top bar with Back to Home on the right -->
+    <div class="topbar">
+        <span class="logo">🦁 CLD Nashik</span>
+        <a href="index.html" class="home-link">← Back to Home</a>
+    </div>
+
+    <main class="container">
+        <h1>About CLD</h1>
+        <p style="text-align:center; max-width:700px; margin:0 auto 40px; color:var(--gray-600);">
+            Building Confident, Responsible & Future‑Ready Children
+        </p>
+
+        <!-- Our Story -->
+        <h2>Our Story</h2>
+        <p>CLD – Child Leadership Development Club was established with a simple yet powerful vision: to help every child discover their potential and become a confident, responsible and future‑ready individual.</p>
+        <p>Today's world demands much more than academic knowledge. Children need confidence, communication skills, leadership qualities, discipline, teamwork and strong character to succeed in school and in life.</p>
+        <p>CLD was created to bridge this gap through a structured, activity‑based learning program where children learn by participating, speaking, thinking, creating and leading.</p>
+        <p>At CLD, every child is encouraged to express ideas, overcome fear, respect others, take responsibility and continuously improve.</p>
+        <p>We believe that every child has unique abilities, and with the right guidance, those abilities can become lifelong strengths.</p>
+
+        <!-- Mission -->
+        <h2>Our Mission</h2>
+        <p>To develop confident, disciplined, responsible and compassionate young leaders through practical learning, communication, leadership activities and character development.</p>
+
+        <!-- Vision -->
+        <h2>Our Vision</h2>
+        <p>To become one of India's most trusted child leadership development organizations by creating an environment where every child can grow with confidence, courage and purpose.</p>
+
+        <!-- Core Values -->
+        <h2>Our Core Values</h2>
+        <div class="value-grid">
+            <div class="value-item">Confidence</div>
+            <div class="value-item">Leadership</div>
+            <div class="value-item">Respect</div>
+            <div class="value-item">Discipline</div>
+            <div class="value-item">Communication</div>
+            <div class="value-item">Responsibility</div>
+            <div class="value-item">Teamwork</div>
+            <div class="value-item">Integrity</div>
+            <div class="value-item">Continuous Learning</div>
+        </div>
+
+        <!-- What Makes CLD Different -->
+        <h2>What Makes CLD Different?</h2>
+        <p>Unlike traditional coaching classes, CLD focuses on life skills that prepare children for the future.</p>
+        <p>Our structured learning model includes:</p>
+        <ul>
+            <li>Public Speaking</li>
+            <li>Leadership Development</li>
+            <li>Confidence Building</li>
+            <li>English Communication</li>
+            <li>Personality Development</li>
+            <li>Team Activities</li>
+            <li>Creative Thinking</li>
+            <li>Decision Making</li>
+            <li>Goal Setting</li>
+            <li>Problem Solving</li>
+            <li>Social Skills</li>
+            <li>Good Habits</li>
+        </ul>
+
+        <!-- Learning Method -->
+        <h2>Our Learning Method</h2>
+        <div class="steps">
+            <div class="step">Learn</div>
+            <div class="arrow">↓</div>
+            <div class="step">Practice</div>
+            <div class="arrow">↓</div>
+            <div class="step">Participate</div>
+            <div class="arrow">↓</div>
+            <div class="step">Perform</div>
+            <div class="arrow">↓</div>
+            <div class="step">Improve</div>
+            <div class="arrow">↓</div>
+            <div class="step">Lead</div>
+        </div>
+
+        <!-- Student Development Journey -->
+        <h2>Student Development Journey</h2>
+        <div class="steps">
+            <div class="step">Foundation</div>
+            <div class="arrow">↓</div>
+            <div class="step">Confidence</div>
+            <div class="arrow">↓</div>
+            <div class="step">Communication</div>
+            <div class="arrow">↓</div>
+            <div class="step">Leadership</div>
+            <div class="arrow">↓</div>
+            <div class="step">Public Speaking</div>
+            <div class="arrow">↓</div>
+            <div class="step">Personality Development</div>
+            <div class="arrow">↓</div>
+            <div class="step">Future Ready Child</div>
+        </div>
+
+        <!-- Why Parents Trust CLD -->
+        <h2>Why Parents Trust CLD</h2>
+        <div class="trust-grid">
+            <div class="trust-item">✅ Professional Leadership Team</div>
+            <div class="trust-item">✅ Structured Curriculum</div>
+            <div class="trust-item">✅ Age‑Wise Learning Activities</div>
+            <div class="trust-item">✅ Practical Learning Approach</div>
+            <div class="trust-item">✅ Student Progress Tracking</div>
+            <div class="trust-item">✅ Parent Communication</div>
+            <div class="trust-item">✅ Certificates & Recognition</div>
+            <div class="trust-item">✅ Safe & Positive Environment</div>
+        </div>
+
+        <!-- Leadership Team -->
+        <h2>Meet Our Leadership Team</h2>
+
+        <div class="team-card">
+            <h3>Vaibhav Patil</h3>
+            <p class="role">Founder & Director</p>
+            <p>Provides strategic direction, leadership vision and organizational development while inspiring students to build confidence, discipline and leadership qualities.</p>
+        </div>
+
+        <div class="team-card">
+            <h3>Pushpalata Pimple</h3>
+            <p class="role">Co‑Founder & Student Development Head</p>
+            <p>Leads student engagement, communication activities, personality development and confidence‑building programs through interactive learning.</p>
+        </div>
+
+        <div class="team-card">
+            <h3>Vyankatesh Vivekanand Jaware</h3>
+            <p class="role">Program Architect & Leadership Coach</p>
+            <p>Designs the CLD curriculum, leadership activities, public speaking sessions, digital learning systems and student development framework to create an engaging learning experience.</p>
+        </div>
+
+        <!-- Our Promise -->
+        <h2>Our Promise</h2>
+        <div class="promise">
+            <p>Every child deserves an opportunity to discover their strengths.</p>
+            <p>At CLD, we don't compare children.</p>
+            <p>We help them grow.</p>
+            <p>We don't just teach.</p>
+            <p>We inspire.</p>
+            <p>We don't simply build students.</p>
+            <p>We develop future leaders.</p>
+        </div>
+
+        <!-- Motto -->
+        <div class="motto">
+            "Learn with Confidence. Lead with Character."
+        </div>
+        <p style="text-align:center; margin-top:12px; font-weight:600;">
+            CLD – Child Leadership Development Club<br>
+            <span style="font-size:0.9rem; color:var(--gray-500);">Building Confidence • Leadership • Character</span>
+        </p>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Child Leadership Development Club, Nashik. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Mentors | Child Leadership Development Club | Nashik</title>
+    <meta name="description" content="Meet the leadership team of CLD: Vaibhav Patil (Founder), Pushpalata Pimple (Co-Founder), Vyankatesh Jaware (Program Architect). Verified education and professional experience.">
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --blue-dark: #145a9e;
+            --blue-light: #e8f2fb;
+            --blue: #1a6fc4;
+            --orange: #f4811f;
+            --orange-dark: #d97014;
+            --orange-light: #fff5ed;
+            --white: #ffffff;
+            --off-white: #f9fafb;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+            --shadow-lg: 0 20px 40px -10px rgba(0,0,0,0.1), 0 8px 20px -8px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --radius-lg: 22px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-poppins: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-poppins);
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.7;
+            padding-top: 80px; /* space for fixed nav */
+        }
+
+        /* Simple fixed navbar for back link */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .navbar a {
+            text-decoration: none;
+            color: var(--blue);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .navbar .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--gray-900);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 60px 0 20px;
+        }
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .verified-badge {
+            display: inline-block;
+            background: var(--blue-light);
+            color: var(--blue-dark);
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+        }
+
+        /* Mentor Grid */
+        .mentor-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .mentor-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 40px 32px;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+            border: 1px solid var(--gray-100);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+        .mentor-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mentor-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--blue-light);
+            box-shadow: 0 8px 24px rgba(26,111,196,0.15);
+        }
+
+        .mentor-info h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .mentor-role {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .mentor-role.blue { color: var(--blue); }
+        .mentor-role.choc { color: #b45309; }
+        .mentor-role.pink { color: #db2777; }
+
+        .detail-block {
+            margin-bottom: 18px;
+        }
+        .detail-block strong {
+            display: block;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .detail-block ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .detail-block li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+        .detail-block li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--blue);
+            font-weight: bold;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .skill-tag {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .cta-section {
+            text-align: center;
+            margin: 60px 0 80px;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: var(--orange);
+            color: white;
+            font-weight: 700;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 12px 30px -8px rgba(244,129,31,0.3);
+            transition: all var(--transition);
+        }
+        .btn-primary:hover {
+            background: var(--orange-dark);
+            transform: translateY(-3px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--gray-200);
+            color: var(--gray-500);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .mentor-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .mentor-img {
+                margin: 0 auto;
+                width: 100px;
+                height: 100px;
+            }
+            .skills-list {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Simple Navbar -->
+    <nav class="navbar">
+        <a href="index.html">← Back to Home</a>
+        <span class="logo">🦁 CLD Nashik</span>
+    </nav>
+
+    <main class="container">
+        <!-- Header -->
+        <div class="page-header">
+            <h1>Meet Our Leadership Team</h1>
+            <p>Dedicated mentors committed to your child's confidence, communication, and leadership development.</p>
+            <span class="verified-badge">✅ Verified Education & Professional Experience</span>
+        </div>
+
+        <!-- Mentors -->
+        <div class="mentor-grid">
+            <!-- Vaibhav Patil -->
+            <div class="mentor-card">
+                <img src="patil.jpeg" alt="Vaibhav Patil" class="mentor-img">
+                <div class="mentor-info">
+                    <h2>Vaibhav Patil</h2>
+                    <p class="mentor-role blue">Founder & Director</p>
+                    <div class="detail-block">
+                        <strong>🎓 Education</strong>
+                        <ul>
+                            <li>B.Sc. Medical Laboratory Technology (B.Sc. MLT)</li>
+                            <li>Diploma in Medical Laboratory Technology (DMLT)</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <strong>💼 Professional Experience</strong>
+                        <ul>
+                            <li>5+ years in pathology laboratories & diagnostics</li>
+                            <li>Worked with: Health Aura Pathology Laboratory, Sarode Pathology, Birla Hospital (Training), Invent Diagnostic Centre (Pune)</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <strong>🎯 Areas of Expertise</strong>
+                        <div class="skills-list">
+                            <span class="skill-tag">Leadership & Strategic Planning</span>
+                            <span class="skill-tag">Team Management</span>
+                            <span class="skill-tag">Communication</span>
+                            <span class="skill-tag">Quality Management</span>
+                            <span class="skill-tag">Healthcare Operations</span>
+                            <span class="skill-tag">Student Motivation</span>
+                        </div>
+                    </div>
+                    <div class="detail-block">
+                        <strong>🏆 Role at CLD</strong>
+                        <p style="margin:0; color:var(--gray-600);">Provides strategic direction, leadership vision, discipline-focused mentoring, and long-term organizational growth.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pushpalata Pimple -->
+            <div class="mentor-card">
+                <img src="puspa.jpeg" alt="Pushpalata Pimple" class="mentor-img">
+                <div class="mentor-info">
+                    <h2>Pushpalata Pimple</h2>
+                    <p class="mentor-role pink">Co‑Founder & Student Development Head</p>
+                    <div class="detail-block">
+                        <strong>🎓 Education</strong>
+                        <ul>
+                            <li>Diploma in Pharmacy (D.Pharm)</li>
+                            <li>Bachelor of Pharmacy (B.Pharm)</li>
+                            <li>UPSC preparation</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <strong>🎯 Areas of Expertise</strong>
+                        <div class="skills-list">
+                            <span class="skill-tag">Student Development</span>
+                            <span class="skill-tag">Communication Skills</span>
+                            <span class="skill-tag">Personality Development</span>
+                            <span class="skill-tag">Leadership Activities</span>
+                            <span class="skill-tag">Team Coordination</span>
+                            <span class="skill-tag">Student Mentoring</span>
+                        </div>
+                    </div>
+                    <div class="detail-block">
+                        <strong>🏆 Role at CLD</strong>
+                        <p style="margin:0; color:var(--gray-600);">Leads student engagement, communication training, confidence-building activities, and personality development programs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vyankatesh Jaware -->
+            <div class="mentor-card">
+                <img src="vyanki.jpeg" alt="Vyankatesh Jaware" class="mentor-img">
+                <div class="mentor-info">
+                    <h2>Vyankatesh Jaware</h2>
+                    <p class="mentor-role choc">Program Architect & Leadership Coach</p>
+                    <div class="detail-block">
+                        <strong>🎓 Education</strong>
+                        <ul>
+                            <li>B.Sc. Computer Science (AI, ML & VR) – Pursuing</li>
+                            <li>Diploma in Pharmacy (D.Pharm)</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <strong>💼 Professional Experience</strong>
+                        <ul>
+                            <li>Quality Control Officer – Agio Pharmaceuticals Pvt. Ltd.</li>
+                            <li>Quality Control Trainee – Tata Autocomp Systems Pvt. Ltd.</li>
+                            <li>Web Developer & Digital Solutions Developer</li>
+                            <li>Designer of CLD's digital systems, website, curriculum & student processes</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <strong>🛠️ Technical Skills</strong>
+                        <div class="skills-list">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Web Development</span>
+                            <span class="skill-tag">AI Fundamentals</span>
+                            <span class="skill-tag">Digital System Design</span>
+                        </div>
+                    </div>
+                    <div class="detail-block">
+                        <strong>🎯 Areas of Expertise</strong>
+                        <div class="skills-list">
+                            <span class="skill-tag">Curriculum Development</span>
+                            <span class="skill-tag">Leadership Training</span>
+                            <span class="skill-tag">Public Speaking</span>
+                            <span class="skill-tag">Digital Education</span>
+                            <span class="skill-tag">Website Development</span>
+                            <span class="skill-tag">Technology Integration</span>
+                            <span class="skill-tag">Program Design</span>
+                        </div>
+                    </div>
+                    <div class="detail-block">
+                        <strong>🏆 Role at CLD</strong>
+                        <p style="margin:0; color:var(--gray-600);">Designs and manages the CLD curriculum, learning activities, technology systems, student progress tracking, and leadership development programs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <a href="index.html#join-form" class="btn-primary">✨ Book a Free Trial with Our Mentors</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Child Leadership Development Club, Nashik. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
